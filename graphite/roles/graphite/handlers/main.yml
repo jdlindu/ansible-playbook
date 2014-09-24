@@ -1,0 +1,8 @@
+- name: reload supervisor
+  shell: supervisorctl reload
+
+- name: restart nginx
+  service: name=nginx state=restarted
+
+- name: restart memcache
+  service: name=memcached state=restarted

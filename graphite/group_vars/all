@@ -1,0 +1,25 @@
+---
+graphite:
+  version: master
+  timezone: Asia/Shanghai
+  workers: 4
+  host: 0.0.0.0
+  server: graphite.local
+  secret_key: 'ob3sow^ik#4q(k5*tgw&6j+osyr^@0jus$yd+-#^&^ds%sim1!'
+
+carbon:
+  host: 0.0.0.0
+  ssl: no
+  whisper_dir: '/data/graphite/storage/whisper/'
+  log_dir: '/data/graphite/storage/log/'
+
+db_graphite:
+  backend: postgresql_psycopg2
+  name: graphite
+  user: graphite
+  password: graphite
+  host: 121.10.26.137
+  port: 5432
+
+cache_instances: []
+background_instances: []

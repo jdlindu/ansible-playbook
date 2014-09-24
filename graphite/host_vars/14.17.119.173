@@ -1,0 +1,3 @@
+---
+memcache_instances:
+  - { ip: "14.17.119.173" , port: "11211" }
