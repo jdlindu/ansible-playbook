@@ -1,0 +1,12 @@
+---
+- name: replace graphite-webapp render functions
+  hosts: carbon-relay-yunfu-xx
+  sudo: True
+  tasks:
+    - copy: src=files/functions.py dest=/opt/graphite/webapp/graphite/render/functions.py owner=www-data group=www-data mode=644 backup=yes
+      notify:
+        - restart nginx
+
+  handlers:
+    - name: restart nginx
+      service: name=nginx state=restarted
