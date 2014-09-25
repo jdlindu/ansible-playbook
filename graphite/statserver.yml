@@ -2,10 +2,10 @@
 - hosts: carbon-*-yunfu-xx
   sudo: True
   roles:
-#    - common
-#    - python
-#    - supervisor
-#    - nginx
+    - common
+    - python
+    - supervisor
+    - nginx
     - role: graphite
       nginx_sites: none
 #    - postgres
