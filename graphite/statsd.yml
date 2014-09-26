@@ -1,0 +1,7 @@
+---
+- hosts: carbon-cache-yunfu-xx
+  sudo: True
+  roles:
+    - nodejs
+    - statsd
+#    - sentry

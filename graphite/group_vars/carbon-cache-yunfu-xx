@@ -5,3 +5,5 @@ cache_instances:
   - { id : "3" , line_port : "2033" , pickle_port : "2034" , query_port : "7032" }
 
 carbon_role: 'cache'
+# statsd variable
+graphiteHost: '14.17.119.176'
