@@ -11,10 +11,29 @@
 pattern = ^carbon\.
 retentions = 60:90d
 
+[predefined_in_key_10s]
+pattern = .*\.precision\>10s.*
+retentions = 10s:1d,1min:7d,10min:1y
+
+[predefined_in_key_1min]
+pattern = .*\.precision\>1min.*
+retentions = 1min:1d,5min:7d,10min:1y
+
+[predefined_in_key_5min]
+pattern = .*\.precision\>5min.*
+retentions = 5min:60d,10min:180d,20min:1y
+
+[predefined_in_key_10min]
+pattern = .*\.precision\>10min.*
+retentions = 10min:180d,20min:1y
+
+[predefined_in_key_15min]
+pattern = .*\.precision\>10min.*
+retentions = 15min:1y
+
 [default_1min_for_90day]
 pattern = .*
 retentions = 60s:30d,5min:180d,15min:1y
-
 
 [statsd]
 pattern = ^stats.*

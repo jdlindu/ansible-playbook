@@ -1,5 +1,5 @@
 ---
-- hosts: carbon-cache-yunfu-xx
+- hosts: yunfu-xx-cluster
   sudo: True
   roles:
     - nodejs

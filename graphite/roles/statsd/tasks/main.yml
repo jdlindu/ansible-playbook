@@ -2,6 +2,7 @@
   git: repo=https://github.com/etsy/statsd.git dest=/opt/statsd update=no
 
 - name: Configure statsd
+  tags: reload statsd
   template: src=localConfig.js.j2 dest=/opt/statsd/localConfig.js
 
 - name: Copy supervisor configuration for statsd

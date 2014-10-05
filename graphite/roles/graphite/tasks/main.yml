@@ -60,9 +60,11 @@
   template: src=carbon.conf.j2 dest=/opt/graphite/conf/carbon.conf mode=0644 backup=yes
 
 - name: Configure carbon storage schema
+  tags: reload carbon config
   template: src=storage-schemas.conf.j2 dest=/opt/graphite/conf/storage-schemas.conf mode=0644 backup=yes
 
 - name: Configure carbon storage aggregation
+  tags: reload carbon config
   template: src=storage-aggregation.conf.j2 dest=/opt/graphite/conf/storage-aggregation.conf mode=0644 backup=yes
 
 # GRAPHITE WEBAPP
@@ -77,6 +79,7 @@
   command: ./bin/pip install ./graphite-web-{{ graphite.version }}/ chdir=/opt/graphite
 
 - name: graphite conf
+  tags: reload graphite web config
   template: src=local_settings.py.j2 dest=/opt/graphite/webapp/graphite/local_settings.py mode=0644 backup=yes
 
 #- name: syncdb for graphite

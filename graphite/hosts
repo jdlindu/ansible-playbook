@@ -18,3 +18,7 @@
 [carbon-relay-yunfu-xx]
 14.17.119.176
 14.17.119.175
+
+[yunfu-xx-cluster:children]
+carbon-cache-yunfu-xx
+carbon-relay-yunfu-xx

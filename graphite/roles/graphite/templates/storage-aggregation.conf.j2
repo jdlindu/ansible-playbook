@@ -13,6 +13,22 @@
 #
 # IMPORTANT. Read this for more information!
 # https://github.com/etsy/statsd/blob/master/docs/graphite.md
+#
+
+[predefined_in_key_min]
+pattern = \.aggregation\>min.*
+xFilesFactor = 0.1
+aggregationMethod = min
+
+[predefined_in_key_max]
+pattern = \.aggregation\>max.*
+xFilesFactor = 0.1
+aggregationMethod = max
+
+[predefined_in_key_sum]
+pattern = \.aggregation\>sum.*
+xFilesFactor = 0.1
+aggregationMethod = sum
 
 [min]
 pattern = \.lower$
