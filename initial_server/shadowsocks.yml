@@ -1,0 +1,25 @@
+---
+- name: install shadowsocks
+  hosts: all 
+  sudo: True
+  tasks:
+    - name: install pip
+      easy_install: name=pip
+
+    - name: install shadowsocks
+      pip: name=shadowsocks
+
+    - name: create shadowsocks conf dir
+      file: path=/etc/shadowsocks state=directory owner=root group=root mode=755
+
+    - name: copy shadowsocks conf
+      copy: src=files/shadowsocks.json dest=/etc/shadowsocks/shadowsocks.json
+
+    - name: install supervisor  
+      apt: name=supervisor state=installed
+
+    - name: copy supervisor conf  
+      copy: src=files/shadowsocks_supervisor.conf dest=/etc/supervisor/conf.d/ owner=root group=root mode=754
+   
+    - name: restart supervisor
+      service: name=supervisor state=restarted

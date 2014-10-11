@@ -1,0 +1,92 @@
+---
+- name: install common package
+  hosts: all
+  remote_user: root
+  vars:
+    normal_user : 'linrunjin'
+  tasks:
+    - apt: name={{item}} state=installed update_cache=yes
+      with_items:
+        - iptables
+        - vim
+        - ethtool
+        - sysstat
+        - wget
+        - coreutils
+        - fping
+        - lrzsz
+        - python
+        - python-dev
+        - iotop
+        - gawk
+        - iftop
+        - unzip
+        - hping3
+        - gcc
+        - make
+        - libcap-ng0
+        - libssl0.9.8
+        - git
+        - aptitude
+        - zsh
+        - htop
+        - curl
+        - python-setuptools
+        - traceroute
+
+    - name: add nodejs source
+      apt_repository: repo='ppa:chris-lea/node.js' state=present
+
+    - name: install nodejs
+      apt: name=nodejs state=installed update_cache=yes
+
+    - name: add user
+      user: name={{ normal_user }} state=present shell=/bin/bash
+
+    - name: Add user remote to sudoers
+      lineinfile:
+        "dest=/etc/sudoers
+        regexp='^{{ normal_user }} ALL'
+        line='{{ normal_user }} ALL=(ALL) NOPASSWD: ALL'
+        state=present"
+
+    - name: setup timezone 
+      command: cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+    - name: initial ssh dir
+      action: file dest=/home/{{ normal_user }}/.ssh state=directory mode=0700 owner={{ normal_user }} group={{ normal_user }}
+    
+    - name: copy ssh file
+      action: copy src=/home/{{ normal_user }}/.ssh/authorized_keys dest=/home/{{ normal_user }}/.ssh/authorized_keys mode=400 owner={{ normal_user }} group={{ normal_user }}
+    
+- name: setup user package
+  hosts: all
+  remote_user: root
+  sudo_user: linrunjin
+  vars:
+    normal_user : 'linrunjin'
+  tasks:
+    - name: git oh-my-zsh
+      tags: git oh-my-zsh
+      git: repo=https://github.com/robbyrussell/oh-my-zsh.git dest=/home/{{ normal_user }}/.oh-my-zsh
+      
+    - name: setup oh-my-zsh
+      tags: setup oh-my-zsh
+      shell: cp /home/{{ normal_user }}/.oh-my-zsh/templates/zshrc.zsh-template /home/{{ normal_user }}/.zshrc
+      notify:
+        - chsh to zsh
+
+    - name: change ssh port
+      lineinfile:
+        dest=/etc/ssh/sshd_config
+        regexp="^Port 22"
+        line="Port 32200"
+        state=present
+      notify:
+        - restart sshd
+
+  handlers:
+    - name: chsh to zsh
+      shell: chsh -s /bin/zsh {{normal_user}}
+    - name: restart sshd
+      service: name=ssh state=restarted

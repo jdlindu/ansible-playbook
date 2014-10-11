@@ -31,10 +31,14 @@ retentions = 10min:180d,20min:1y
 pattern = .*\.precision\>10min.*
 retentions = 15min:1y
 
-[default_1min_for_90day]
-pattern = .*
-retentions = 60s:30d,5min:180d,15min:1y
+[deprecate_proc_pattern]
+pattern = ^sysop.proc_flow.*
+retentions = 5min:60d,10min:180d,20min:1y
 
 [statsd]
 pattern = ^stats.*
 retentions = 10s:6h,1min:7d,10min:5y
+
+[default_1min_for_90day]
+pattern = .*
+retentions = 60s:30d,5min:180d,15min:1y
