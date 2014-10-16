@@ -5,6 +5,10 @@
   tags: reload statsd
   template: src=localConfig.js.j2 dest=/opt/statsd/localConfig.js
 
+- name: Configure statsd tcp
+  tags: reload statsd
+  template: src=localConfig_tcp.js.j2 dest=/opt/statsd/localConfig_tcp.js
+
 - name: Copy supervisor configuration for statsd
   template: src=supervisor-statsd.conf.j2 dest=/etc/supervisor/conf.d/statsd.conf
   notify: 

@@ -14,19 +14,18 @@ host:  '0.0.0.0',
 port: 8125,
 checkInterval: 1000,
 cacheSize: 10000,
-log:{
-backend: "stdout"
-}
+log: { 'backend' : 'syslog' , 'application' : 'statsd_d' , 'level' : 'LOG_DEBUG' },
+dumpMessages: true
 }
 {% else %}
 {
   graphitePort: 2003
 , graphiteHost: "{{graphiteHost}}"
 , port: 8125
+, flushInterval: 60000
 , backends: [ "./backends/graphite" ]
 , deleteIdleStats: true
-,log:{
-backend: "stdout"
-}
+, log: { 'backend' : 'syslog' , 'application' : 'statsd_d' , 'level' : 'LOG_DEBUG' }
+, dumpMessages: true
 }
 {% endif %}

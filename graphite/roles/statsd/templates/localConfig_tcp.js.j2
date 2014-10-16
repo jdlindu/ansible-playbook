@@ -1,0 +1,15 @@
+{%if statsd_nodes %}
+{% else %}
+{
+  graphitePort: 2003
+, graphiteHost: "{{graphiteHost}}"
+, port: 8125
+, mgmt_port: 8127
+, server: "./servers/tcp"
+, flushInterval: 60000
+, backends: [ "./backends/graphite" ]
+, deleteIdleStats: true
+, log: { 'backend' : 'syslog' , 'application' : 'statsd_d' , 'level' : 'LOG_DEBUG' }
+, dumpMessages: true
+}
+{% endif %}

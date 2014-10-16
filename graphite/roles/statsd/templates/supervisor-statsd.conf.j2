@@ -8,3 +8,12 @@ process_name=%(program_name)s
 autostart=true
 autorestart=true
 stopsignal=QUIT
+
+{%if not statsd_nodes %}
+[program:statsd_tcp]
+command=/usr/local/bin/node /opt/statsd/stats.js /opt/statsd/localConfig_tcp.js
+process_name=%(program_name)s
+autostart=true
+autorestart=true
+stopsignal=QUIT
+{% endif %}
