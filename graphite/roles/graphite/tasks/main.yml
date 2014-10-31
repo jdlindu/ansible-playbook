@@ -57,6 +57,7 @@
   command: ./bin/pip install ./carbon-{{ graphite.version }}/ chdir=/opt/graphite
 
 - name: Configure carbon cache
+  tags: reload carbon config
   template: src=carbon.conf.j2 dest=/opt/graphite/conf/carbon.conf mode=0644 backup=yes
 
 - name: Configure carbon storage schema

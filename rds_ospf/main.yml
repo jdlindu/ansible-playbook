@@ -1,0 +1,41 @@
+---
+- name: "install rds ospf"
+  hosts: all
+  sudo: True
+  tasks: 
+    - name: install quagga
+      yum: name=quagga state=installed
+
+    - name: 关闭本机ARP通告,打开ip转发
+      shell:  echo 1 >/proc/sys/net/ipv4/conf/all/arp_ignore;
+              echo 2 >/proc/sys/net/ipv4/conf/all/arp_announce;
+
+    - name: configure quagga
+      template: src=templates/{{item}} dest=/etc/quagga/ backup=yes
+      with_items:
+        - zebra.conf
+        - ospfd.conf
+
+    - name: start ospf
+      service: name={{item}} state=started
+      with_items:
+        - zebra
+        - ospfd
+
+    - name: setup ospf auto start
+      shell: chkconfig zebra on;
+             chkconfig ospfd on;
+
+    - name: tempalte start script
+      local_action: template src=templates/start.sh dest=files/start.sh
+
+    - name: start lo interface
+      script: files/start.sh
+
+    - name: tempalte setup rc script
+      tags: [ 'rc' ]
+      local_action: template src=templates/setup_rc.sh dest=files/setup_rc.sh
+
+    - name: setup rc.local
+      tags: [ 'rc' ]
+      script: files/setup_rc.sh
