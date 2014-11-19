@@ -1,0 +1,11 @@
+{
+  "service": {
+    "name": "statsite",
+    "tags": [ "master" ],
+    "port": 8125,
+    "check": {
+      "script": "../bin/ping.sh 0.0.0.0 8125",
+      "interval": "10s"
+    }
+  }
+}

@@ -14,12 +14,12 @@ carbon:
   log_dir: '/data/graphite/storage/log/'
 
 db_graphite:
-  backend: postgresql_psycopg2
+  backend: mysql
   name: graphite
   user: graphite
-  password: graphite
-  host: 121.10.26.137
-  port: 5432
+  password: fs5WC63ukFif
+  host: 113.107.239.203
+  port: 20000
 
 cache_instances: []
 background_instances: []

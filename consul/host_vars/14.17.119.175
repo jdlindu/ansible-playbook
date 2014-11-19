@@ -1,0 +1,5 @@
+---
+services:
+  - 'statsite'
+  - 'graphite-web'
+  - 'carbon-relay'

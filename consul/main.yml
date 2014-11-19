@@ -1,0 +1,31 @@
+---
+- name: setup consul cluster
+  hosts: all
+  sudo: True
+  vars:
+    consul_version: "0.4.1.0"
+    consul_path: "/data/services/yuntu-consul-server-{{consul_version}}/"
+  tasks:
+    - name: collect host stats
+      yysetup:
+
+    - name: check consul installed
+      shell: ls {{consul_path}}
+
+    - name: install ping script
+      copy: src=files/ping.sh dest=/data/services/yuntu-consul-server-{{consul_version}}/bin/ owner=root group=root mode=755
+
+    - name: template consul services
+      template: src=templates/{{item}}.json dest={{consul_path}}/conf/ owner=root group=root mode=755 backup=yes
+      with_items: services
+      notify:
+        - reload consul
+      when: services
+
+  handlers:
+    - name: reload consul
+      shell: kill -HUP $(pidof consul)
+
+#    - name: clear consul data
+#      tags: [ 'clear' ]
+#      shell: rm -rf /data/services/consul-{{consul_version}}/data/

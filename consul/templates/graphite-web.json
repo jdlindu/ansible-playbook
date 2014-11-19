@@ -1,0 +1,11 @@
+{
+  "service": {
+    "name": "graphite-web",
+    "tags": [ "master" ] ,
+    "port": 80,
+    "check": {
+      "script": "../bin/ping.sh 0.0.0.0 80",
+      "interval": "10s"
+    }
+  }
+}

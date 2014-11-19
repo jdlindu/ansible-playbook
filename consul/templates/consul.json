@@ -1,0 +1,14 @@
+{
+  "datacenter": "{{pri_group_id}}",
+  "data_dir": "{{/data/services/consul-{{consul_version}}}}/data/",
+  "enable_syslog": true,
+  "log_level": "DEBUG",
+  "statsd_addr": "apm.sysop.duowan.com",
+  "node_name": "{{server_id}}",
+  "bootstrap_expect": 3,
+  "server": true,
+  "encrypt": "PML6exN21alLtc5sX8SGpg==",
+  "start_join" : [
+    "{{join_server}}"
+  ]
+}

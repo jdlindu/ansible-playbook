@@ -29,6 +29,7 @@
     - pyparsing
     - gunicorn
     - twisted
+    - MySQL-python
     - cairocffi # Drop-in replacement for py2cairo. Can be installed inside virtualenv. See http://stackoverflow.com/questions/11491268/install-pycairo-in-virtualenv
 
 # WHISPER
@@ -43,7 +44,7 @@
   command: ./bin/pip install ./whisper-{{ graphite.version }}/ chdir=/opt/graphite
 
 - name: create whisper data dir
-  file: path=/data/graphite/ owner={{nginx_user}} group={{nginx_user}} mode=755 state=directory
+  file: path={{carbon.whisper_dir}} owner={{nginx_user}} group={{nginx_user}} mode=755 state=directory
 
 # CARBON
 

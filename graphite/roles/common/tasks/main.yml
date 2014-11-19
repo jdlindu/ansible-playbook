@@ -9,6 +9,8 @@
     - git
     - python-dev
     - libpq-dev
+    - libmysqld-dev
+    - mysql-client
   when: ansible_os_family == "Debian"
 
 - name: set hostname file
