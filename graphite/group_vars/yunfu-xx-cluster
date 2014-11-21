@@ -4,3 +4,12 @@ memcache_instances:
   - { ip: "10.23.16.45" , port: "11211" }
   - { ip: "10.23.16.47" , port: "11211" }
   - { ip: "10.23.16.48" , port: "11211" }
+  - { ip: "10.23.16.142" , port: "11211" }
+
+db_graphite:
+  backend: mysql
+  name: graphite
+  user: graphite
+  password: fs5WC63ukFif
+  host: 113.107.239.203
+  port: 20000

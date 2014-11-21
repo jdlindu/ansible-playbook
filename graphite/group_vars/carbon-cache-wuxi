@@ -1,0 +1,6 @@
+---
+carbon_role: 'cache'
+cache_instances:
+  - { id : "1" , line_port : "2013" , pickle_port : "2014" , query_port : "7012" }
+  - { id : "2" , line_port : "2023" , pickle_port : "2024" , query_port : "7022" }
+  - { id : "3" , line_port : "2033" , pickle_port : "2034" , query_port : "7032" }

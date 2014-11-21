@@ -1,0 +1,32 @@
+---
+- name: install diamond
+  hosts: all
+  sudo: True
+  gather_facts: False
+  tasks:
+    - name: yysetup gather cmdb host info
+      yysetup:
+
+    - name: install python common tools
+      apt: name=python-setuptools state=installed
+
+    - name: install python-statsd
+      easy_install: name=statsd
+
+    - name: copy diamond pkg
+      copy: src=files/diamond_3.5.8_all.deb dest=/tmp/
+
+    - name: install diamond pkg
+      apt: deb=/tmp/diamond_3.5.8_all.deb state=installed
+
+    - name: start diamond
+      service: name=diamond state=started
+
+    - name: template diamond config
+      template: src=templates/diamond.conf dest=/etc/diamond/diamond.conf owner=root group=root mode=744
+      notify:
+        - reload diamond
+
+  handlers:
+    - name: reload diamond
+      service: name=diamond state=reloaded

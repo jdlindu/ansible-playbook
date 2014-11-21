@@ -1,5 +1,5 @@
 ---
-- hosts: carbon-*-yunfu-xx
+- hosts: yunfu-xx-cluster
   sudo: True
   roles:
     - common

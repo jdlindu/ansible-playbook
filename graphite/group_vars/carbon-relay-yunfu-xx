@@ -2,7 +2,9 @@ carbon_role: 'relay'
 background_instances:
   - { 'ip' : '10.23.16.44' , 'port' : '2004' , 'id' : '1' }
   - { 'ip' : '10.23.16.45' , 'port' : '2004' , 'id' : '2' }
+  - { 'ip' : '10.23.16.142' , 'port' : '2004' , 'id' : '3' }
 
 statsd_nodes:
   - {host: '10.23.16.44', port: 8125, adminport: 8126}
   - {host: '10.23.16.45', port: 8125, adminport: 8126}
+  - {host: '10.23.16.142', port: 8125, adminport: 8126}

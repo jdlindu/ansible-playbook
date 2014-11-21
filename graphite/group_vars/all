@@ -10,16 +10,8 @@ graphite:
 carbon:
   host: 0.0.0.0
   ssl: no
-  whisper_dir: '/data/graphite/storage/whisper/'
-  log_dir: '/data/graphite/storage/log/'
-
-db_graphite:
-  backend: mysql
-  name: graphite
-  user: graphite
-  password: fs5WC63ukFif
-  host: 113.107.239.203
-  port: 20000
+  whisper_dir: '/data1/graphite/storage/whisper/'
+  log_dir: '/data1/graphite/storage/log/'
 
 cache_instances: []
 background_instances: []
