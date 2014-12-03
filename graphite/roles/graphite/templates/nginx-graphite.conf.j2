@@ -2,6 +2,8 @@ server {
     listen 80;
     server_name {{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }};
 
+    access_log /data/yy/log/{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}.log main;
+
     client_max_body_size 64M;
     keepalive_timeout 5;
     

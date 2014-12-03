@@ -15,15 +15,3 @@
 carbon-cache-yunfu-xx
 carbon-relay-yunfu-xx
 
-[carbon-relay-wuxi]
-61.147.186.88
-61.147.186.87
-
-[carbon-cache-wuxi]
-61.147.186.82
-61.147.186.81
-61.147.186.80
-
-[wuxi-cluster:children]
-carbon-relay-wuxi
-carbon-cache-wuxi
